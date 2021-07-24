@@ -6,6 +6,6 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 3.24"
     }
-    # kubernetes = "~> 1.19"
+    kubernetes = "~> 1.10"
   }
 }

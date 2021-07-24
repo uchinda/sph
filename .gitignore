@@ -50,3 +50,4 @@
 
 # Terraform
 .terraform*
+kubeconfig_sph-eks-cluster
