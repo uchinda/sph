@@ -1,5 +1,5 @@
 provider "aws" {
-  region                  = "ap-southeast-1"
+  region                  = var.region
   shared_credentials_file = "/home/uchinda/.aws/credentials"
   profile                 = "default"
 }
