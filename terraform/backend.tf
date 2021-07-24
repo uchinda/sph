@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
-    bucket = "sph-terraform-state"
+    bucket = "terraform-state-sph"
     key    = "assignment/terraform.tfstate"
-    region = "eu-central-1"
+    region = "ap-southeast-1"
   }
 }
