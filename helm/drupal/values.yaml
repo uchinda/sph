@@ -77,3 +77,10 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+persistence:
+  storageClass: efs-sc
+  accessMode: ReadWriteMany
+  size: 10Gi
+  volumeHandle: fs-14c17054
+  reclaimPolicy: Retain
