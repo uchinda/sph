@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ include "drupal.fullname" . }}
+  labels:
+    {{- include "drupal.labels" . | nindent 4 }}
+spec:
+  storageClassName: {{ .Values.persistence.storageClass | quote }}
+  claimRef:
+    name: {{ include "drupal.fullname" . }}
+    namespace: {{ .Release.Namespace }}
+  capacity:
+    storage: {{ .Values.persistence.size | quote }}
+  volumeMode: Filesystem
+  persistentVolumeReclaimPolicy: {{ .Values.persistence.reclaimPolicy | quote }}
+  accessModes:
+    - {{ .Values.persistence.accessMode | quote }}
+  csi:
+    driver: efs.csi.aws.com
+    volumeHandle: {{ .Values.persistence.volumeHandle | quote }}
