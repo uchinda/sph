@@ -51,3 +51,4 @@
 # Terraform
 .terraform*
 kubeconfig_sph-eks-cluster
+helm/drupal/templates/db-secrets.yaml
