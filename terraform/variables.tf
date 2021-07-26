@@ -26,3 +26,19 @@ variable "db_password" {
   type      = string
   sensitive = true
 }
+
+variable "rds_engine_type" {
+  default = "aurora-mysql"
+}
+
+variable "rds_engine_version" {
+  default = "5.7.12"
+}
+
+variable "rds_instance_type" {
+  default = "db.t3.medium"
+}
+
+variable "rds_replica_instance_type" {
+  default = "db.t3.small"
+}

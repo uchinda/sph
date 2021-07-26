@@ -2,10 +2,10 @@ module "aurora" {
   source = "terraform-aws-modules/rds-aurora/aws"
 
   name                  = local.db_name
-  engine                = "aurora-mysql"
-  engine_version        = "5.7.12"
-  instance_type         = "db.t3.medium"
-  instance_type_replica = "db.t3.small"
+  engine                = var.rds_engine_type
+  engine_version        = var.rds_engine_version
+  instance_type         = var.rds_instance_type
+  instance_type_replica = var.rds_replica_instance_type
 
   vpc_id                = module.vpc.vpc_id
   db_subnet_group_name  = module.vpc.database_subnet_group_name
