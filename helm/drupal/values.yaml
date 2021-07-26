@@ -8,7 +8,7 @@ image:
   repository: drupal
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: 8.6
+  tag: 8-apache
 
 imagePullSecrets: []
 nameOverride: ""

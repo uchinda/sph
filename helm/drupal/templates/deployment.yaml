@@ -24,7 +24,7 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "drupal.serviceAccountName" . }}
+      # serviceAccountName: {{ include "drupal.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -33,26 +33,36 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          # envFrom:
-          # - secretRef:
-          #   name: mysql-db
+          envFrom:
+          - secretRef:
+              name: mysql-db
           ports:
             - name: http
               containerPort: 80
               protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
-          readinessProbe:
-            httpGet:
-              path: /
-              port: http
+          # livenessProbe:
+          #   httpGet:
+          #     path: /
+          #     port: http
+          # readinessProbe:
+          #   httpGet:
+          #     path: /
+          #     port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
-          - mountPath: /var/www
+          - mountPath: /var/www/html/modules
             name: drupal-efs
+            subPath: modules
+          - mountPath: /var/www/html/profiles
+            name: drupal-efs
+            subPath: profiles
+          - mountPath: /var/www/html/themes
+            name: drupal-efs
+            subPath: themes
+          - mountPath: /var/www/html/sites
+            name: drupal-efs
+            subPath: sites
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
