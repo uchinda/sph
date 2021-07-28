@@ -33,6 +33,19 @@ Following AWS service will create through **Terraform**
    - `terraform plan`
    - `terraform apply -auto-approve`
 
+# Installing EKS Addons
+Using EFS and ALB as addons, need to install those service on EKS cluster after cluster provisioned.
+1. Install EFS
+
+   ```shell
+   cd addons
+   sh efs-csi.sh
+   ```
+2. Install ALB
+   ```shell
+   cd addons
+   sh alb.sh
+   ```
 # Application Deployment
 
 Using ***`helm`*** chart to deploy but **secrets** has created manually
